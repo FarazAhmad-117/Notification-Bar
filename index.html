@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification or Toast Bar</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/985cafe0e1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="buttons">
+        <button onclick="showToast('success',' Your task has been executed successfully.')">Success</button>
+        <button onclick="showToast('error','There was an error in the task assigned.')">Error</button>
+        <button onclick="showToast('invalid',' Your task was Invalid so it is terminated')">Invalid</button>
+        <button onclick="showToast('primary','This task was executed.')">Primary</button>
+    </div>
+    <div id="toastBox"></div>
+    <script>
+        const toastBox = document.getElementById('toastBox');
+        function showToast(type,message){
+            let toast = document.createElement('div');
+            toast.className = `${type} toast`;
+            if(type == "success"){
+                message = '<i class="fa-solid fa-circle-check"></i>'+message;
+            }else if(type == "error"){
+                message = '<i class="fa-solid fa-circle-xmark"></i>'+message;
+            }else if(type == "invalid"){
+                message = '<i class="fa-solid fa-circle-exclamation"></i>'+message;
+            }else if(type == "primary"){
+                message = '<i class="fa-solid fa-circle-info"></i>'+message;
+            }
+            toast.innerHTML = message;
+            toastBox.appendChild(toast);
+            setTimeout(()=>{
+                toast.remove();
+            },4000);
+        }
+    </script>
+</body>
+</html>
